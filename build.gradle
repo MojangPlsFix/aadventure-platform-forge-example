@@ -31,15 +31,21 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    flatDir {
-         dir 'libs'
+    // Generate Github Token: GitHub > Settings > Developer Settings > Personal access tokens > Generate new token
+    maven {
+        name = "Adventure Platform for Forge Fork"
+        url = uri("https://maven.pkg.github.com/MyFTB/adventure-platform-forge")
+        credentials {
+            username = githubUsername
+            password = githubPackageToken
+        }
     }
 }
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.2.0'
 
-    implementation fg.deobf("adventure-platform-forge-0.1.0.jar:adventure-platform-forge:0.1.0")
+    implementation  fg.deobf('net.kyori.adventure:adventure-platform-forge:0.2.0')
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
